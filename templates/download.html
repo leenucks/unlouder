@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+	<header class="py-6">
+        <div class="container flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full fixed bg-[#0F141A] p-4 top-0">
+            <div class="text-2xl font-bold"><a href="{{ url_for('main.home') }}"><span style="color: #00BFA6;">Un</span>Louder</a></div>
+            <div class="hidden md:flex md:space-x-8 lg:space-x-12 items-center">
+                <a href="{{ url_for('main.home') }}">Home</a>
+            </div>
+        </div>
+    </header>
+    <input type="text" id="downloadStatusID" class="hidden" value="{{downloadStatusID}}">
+    <div class="mt-16 justify-center mx-auto w-2/3">
+    	<div class="selection:bg-slate-900 selection:text-slate-100 hover:text-inherit mx-auto max-w-xl shadow-xl p-8 text-slate-700 text-sm leading-6 sm:text-base sm:leading-7 bg-slate-800 text-slate-400">
+            <p class="text-justify">
+                Processing, it takes time or Go Host your own 😏
+            </p>
+        </div>
+    </div>
+
+    <div class="mt-8 justify-center mx-auto w-2/3">
+        <div class="selection:bg-slate-900 selection:text-slate-100 hover:text-inherit my-auto mx-auto max-w-xl shadow-xl p-8 text-slate-700 text-sm leading-6 sm:text-base sm:leading-7 bg-slate-800 text-slate-400">
+            <p class="text-justify overflow-x-auto">
+                <span class="text-xl font-extrabold text-slate-200"><span style="color: #00BFA6; text-decoration: underline;">D</span>ownload</span><br><br> <span id="downloadLink" class="z-1 opacity-100 text-[#00BFA6] font-bold">{{checksum}}</span>
+            </p>
+            <p class="mt-4">above download link is valid for 12 hours (process is repeatable, no cap, I promise)</p>
+        </div>
+    </div>
+    
+{% endblock content %}

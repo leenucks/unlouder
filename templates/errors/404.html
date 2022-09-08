@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<header class="py-6">
+        <div class="container flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full fixed bg-[#0F141A] p-4 top-0">
+            <div class="text-2xl font-bold"><a href="{{ url_for('main.home') }}"><span style="color: #00BFA6;">Un</span>Louder</a></div>
+            <div class="hidden md:flex md:space-x-8 lg:space-x-12 items-center">
+                <a href="{{ url_for('main.home') }}" class="text-selected-text">Home</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mt-32 md:mt-0 flex justify-start items-center mx-auto px-8 md:px-14 lg:px-24 w-full lg:w-2/3">
+        <div class="flex flex-wrap md:flex-nowrap">
+            <div class="flex flex-wrap lg:ml-20 justify-center md:justify-start max-w-xl mt-0 md:my-36">
+                <h1 class="font-bold text-5xl md:text-6xl lg:text-7xl text-left md:text-left">Error<br> <span style="color: #00BFA6;">404</span>.</h1>
+                <p class="m-4 opacity-50">Listen to music until then</p>
+                <div class="m-24"><audio controls autoplay>
+                    <source src="{{ url_for('static', filename='Weston_Estate_So_Good.mp3') }}" type="audio/mpeg">
+                </audio></div>            
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

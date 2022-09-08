@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>
+		
+		{% if title %}
+			UnLouder | {{ title }}
+		{% else %}
+			UnLouder
+		{% endif %}
+
+	</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+    <style type="text/css">
+        ::-webkit-scrollbar {width: 6px; height: 2px; background: #0F141A; }
+        ::-webkit-scrollbar-thumb { background-color: #00BFA6; -webkit-border-radius: 2rem; }
+    </style>
+<body class="bg-[#0F141A] text-white font-poppins pb-12">
+
+	{% block content %}
+
+	{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>
+		
+		{% if title %}
+			UnLouder | {{ title }}
+		{% else %}
+			UnLouder
+		{% endif %}
+
+	</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+</head>
+<style type="text/css">
+    ::-webkit-scrollbar {width: 6px; height: 2px; background: #0F141A; }
+    ::-webkit-scrollbar-thumb { background-color: #00BFA6; -webkit-border-radius: 2rem; }
+    </style>
+<body class="bg-[#0F141A] text-white font-poppins pb-12">
+
+	<header class="py-6">
+        <div class="container flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full fixed bg-[#0F141A] p-4 top-0">
+            <div class="text-2xl font-bold"><a href="{{ url_for('main.home') }}"><span style="color: #00BFA6;">Un</span>Louder</a></div>
+            <div class="hidden md:flex md:space-x-8 lg:space-x-12 items-center">
+                <a href="{{ url_for('main.home') }}">Home</a>
+            </div>
+        </div>
+    </header>
+
+        <div class="container mt-12 md:mt-28 flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full lg:w-2/3">
+			<section class="w-full">
+				<h2 id="contact" class="secondary-title">Cloud</h2>
+				<p class="section-paragraph">errors are compulsory :></p>
+				<img style="width: 240px; height: auto;" class="md:hidden mt-12 mx-auto" src="https://c.tenor.com/-E25PiqG8FkAAAAC/upload-loading.gif">
+			</section>
+		</div>
+
+		<div class="container p-4 mt-12 md:mt-16 flex justify-center items-center mx-auto px-8 md:px-20 lg:px-24 w-full lg:w-2/3">
+			<div class="flex justify-center w-full">
+	  			<div class="mb-3 w-full xl:w-96">
+
+		    		<form action='{{ url_for("main.upload")}}' method="POST">
+
+		    			<label for="uploadURL" class="form-label inline-block mb-2 text-white opacity-80 text-xl">URL to save file to Cloud <span class="opacity-60">(more errors)</span></label>
+		    			<input type="url" class="mt-4 form-control block w-full px-3 py-1.5 text-base font-normal text-zinc-50 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-slate-900 focus:bg-white focus:border-blue-600 focus:outline-none" id="uploadURL" name="uploadURL" placeholder="https://"/>
+		    			<button type="submit" style="border-radius: 0.6rem;" class="mt-8 px-4 py-2 bg-[#00BFA6] font-bold">Request Upload</button>
+
+		    		</form>
+		    		{% if urlUploadError %}
+		    			<p class="mt-4 text-sm text-red-500">Check validity of URL</p>
+		    		{% endif %}
+		  		</div>
+			</div>
+		</div>
+
+
+        <div class="container lg:p-0 my-0 md:mt-0 flex justify-center items-center mx-auto px-auto md:px-14 lg:px-0 w-full lg:w-2/3">
+        <p class="text-xl text-inherit text-slate-400">or</p>
+        </div>
+        <div class="container p-4 mt-4 md:mt-8 flex justify-center items-center mx-auto px-8 md:px-20 lg:px-24 w-full lg:w-2/3">
+            <div class="flex justify-center items-center w-full">
+                    <div class="mb-3 w-full xl:w-96">
+                    <form method="POST" action='{{ url_for("main.localUpload")}}' class="dropzone dz-clickable dz-max-files-reached px-4 py-3 rounded bg-[#161E27] border-[#00BFA6] text-xl font-bold" id="dropper" enctype="multipart/form-data">
+                    </form>
+                    <div class="mt-8 justify-center mx-auto w-2/3">
+                        <div class="selection:bg-slate-900 selection:text-slate-100 hover:text-inherit my-auto mx-auto max-w-xl shadow-xl p-8 text-sm leading-6 sm:text-base sm:leading-7 bg-slate-800 text-slate-400">
+                            <p class="text-justify overflow-x-auto">
+                                <span id="sha256checksumlocal" class="z-1 opacity-100 text-[#00BFA6] font-bold">待っている</span>
+                            </p>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+
+
+		<div class="container lg:p-0 my-0 md:mt-0 flex justify-center items-center mx-auto px-auto md:px-14 lg:px-0 w-full lg:w-2/3">
+		<p class="text-xl text-inherit text-slate-400">or</p>
+		</div>
+		<div class="container p-4 mt-4 md:mt-8 flex justify-center items-center mx-auto px-8 md:px-20 lg:px-24 w-full lg:w-2/3">
+			<div class="flex justify-center w-full">
+	  			<div class="mb-3 w-full xl:w-96">
+		    		<form action='{{ url_for("main.download")}}' method="POST">
+
+		    			<label for="downloadCheckSum" class="form-label inline-block mb-2 text-white opacity-80 text-xl">CheckSum to download file</label>
+		    			<input type="text" min="64", max="64" class="mt-4 form-control block w-full px-3 py-1.5 text-base font-normal text-zinc-50 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-slate-900 focus:bg-white focus:border-blue-600 focus:outline-none" id="downloadCheckSum" name="downloadCheckSum" placeholder="58f9df099d435a444f62272e4f52da323b72f06cdc1f2103ee635ffab78dda42"/>
+		    			<button type="submit" style="border-radius: 0.6rem;" class="mt-8 px-4 py-2 bg-[#00BFA6] font-bold">Request Download</button>
+
+		    		</form>
+		    		{% if checksumDownloadError %}
+		    			<p class="mt-4 text-sm text-red-500">Check validity of checksum</p>
+		    		{% endif %}
+		  		</div>
+			</div>
+		</div>
+
+
+    <script type="application/javascript">
+
+        Dropzone.options.dropper = {
+            paramName: 'file',
+            maxFiles: 1,
+            chunking: true,
+            forceChunking: true,
+            url: '/localUpload',
+            maxFilesize: 2048, // megabytes
+            chunkSize: 1048576 , // bytes
+
+            init: function() {
+                    thisDropzone = this;
+                    this.on("success", function(file, responseText) {
+                        // var responseText = file.id // or however you would point to your assigned file ID here;
+                        // console.log(responseText);  // console should show the ID you pointed to
+                        // do stuff with file.id ...
+                        document.getElementById('sha256checksumlocal').innerText = responseText
+                    });
+                }
+        }
+
+                    
+    </script>
+</body>
+</html>

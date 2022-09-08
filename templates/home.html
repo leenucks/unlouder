@@ -1,0 +1,115 @@
+{% extends 'layout.html' %}
+{% block content %}
+	
+	<header class="py-6">
+        <div class="container flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full fixed bg-[#0F141A] p-4 top-0">
+            <div class="text-2xl font-bold flex justify-evenly">
+                <img src="{{ url_for('static', filename='favicon.ico') }}" width="28px">
+                <a href="{{ url_for('main.home') }}">
+                    <span style="color: #00BFA6;">n</span>Louder
+                </a>
+            </div>
+            <div class="hidden md:flex md:space-x-8 lg:space-x-12 items-center">
+                <a href="#working">Working</a>
+                <a href="#todo">ToDo</a>
+                <a href="{{ url_for('main.cloud') }}"><button style="border-radius: 1.8rem;" class="px-6 py-2 bg-[#00BFA6] font-bold">Cloud</button></a>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container mt-32 md:mt-0 flex justify-start items-center mx-auto px-8 md:px-14 lg:px-24 w-full lg:w-2/3">
+        <div class="flex flex-wrap md:flex-nowrap">
+            <div class="flex flex-wrap lg:ml-20 justify-center md:justify-start max-w-xl mt-0 md:my-36">
+                <h1 class="font-bold text-5xl md:text-6xl lg:text-7xl text-left md:text-left"><span class="opacity-50 text-xl">another</span><br> Cloud<br> but unlimited.<p class="mt-2 text-xl text-slate-600">(and anonymous 👾)</p></h1>
+                <div class="w-full flex justify-center md:justify-start mt-12">
+                    <a href="{{ url_for('main.cloud') }}">
+                        <button style="border-radius: 2rem;" class="px-8 py-4 bg-[#00BFA6] text-white font-bold flex items-center space-x-3">
+                        <span>Cloud</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+		<!-- Working -->
+		<div class="container mt-36 md:mt-20 flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full lg:w-2/3">
+			<section class="w-full">
+				<h2 id="working" class="secondary-title">Working</h2>
+				<p class="section-paragraph">easy explained, difficult to <span style="color: #94a3b8; font-weight: 600;">CODE</span>.</p>
+                <img class="md:hidden animated-gif mt-12 mx-auto" src="https://c.tenor.com/C5vCevLXJIkAAAAC/thats-not-how-it-works-sceptical.gif">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6"></div>
+                    <div class="selection:bg-slate-900 selection:text-slate-100 hover:text-inherit my-10 max-w-xl shadow-xl p-8 text-sm leading-6 sm:text-base sm:leading-7 bg-slate-800 text-slate-400">
+                        <p class="text-justify">
+                            <span class="text-4xl font-extrabold text-slate-200"><span style="color: #00BFA6; text-decoration: underline;">U</span>pload</span><br><br> U provide direct link, it downloads those files and save 'em to server (Local File upload soon). SHA256-checksum is generated for file for later retrieving and preventing duplicate upload. Current upload cap of single file is 2 GiB as of it uses Telegram Storage and no file-splitting is done (yet).
+                        </p>
+                    </div>
+                    <div class="selection:bg-slate-900 selection:text-slate-100 hover:text-inherit mx-auto max-w-xl shadow-xl p-8 text-sm leading-6 sm:text-base sm:leading-7 bg-slate-800 text-slate-400">
+                        <p class="text-justify">
+                            <span class="text-4xl font-extrabold text-slate-200"><span style="color: #00BFA6; text-decoration: underline;">C</span>hecksum</span><br><br> Uploaded files return back with SHA256-checksum of file. All files are Private unless u got the file checksum but are accessible by owner/admin. For Private server, I may Open-source the project later, Go Host your own 😏
+                        </p>
+                    </div>
+                    <div class="selection:bg-slate-900 selection:text-slate-100 hover:text-inherit my-10 max-w-xl shadow-xl p-8  text-sm leading-6 sm:text-base sm:leading-7 bg-slate-800 text-slate-400">
+                        <p class="text-justify">
+                            <span class="text-4xl font-extrabold text-slate-200"><span style="color: #00BFA6; text-decoration: underline;">D</span>ownload</span><br><br> Files are retrieved using SHA256-checksum from Telegram and streamed directly to u. (Download links never expire, but server can :v )
+                        </p>
+                    </div>
+				</div>
+			</section>             
+		</div>
+
+
+		<!-- ToDo -->
+		<div class="container mt-12 md:mt-28 flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full lg:w-2/3">
+			<section class="w-full">
+				<h2 id="todo" class="secondary-title">ToDo</h2>
+				<p class="section-paragraph">which I won't do :)</p>
+                <img class="md:hidden animated-gif mt-12 mx-auto" src="https://c.tenor.com/gTg8ZSZMR6YAAAAC/scaler-create-impact.gif">
+                <div class="mt-12 lg:w-2/3">
+                    <ul class="list-disc">
+                        <li>(maybe) Open-source the entire Project</li>
+                        <ul class="list-inside">
+                            <li class="opacity-40 mb-4">For those who wanna deploy on their own</li>
+                        </ul>
+                        <li>Add Torrent support and some optimisations</li>
+                        <ul class="list-inside">
+                            <li class="opacity-40 mb-4">This gonna speed up some underlying things</li>
+                        </ul>
+                        <li>Add Account Sign(up | in) mechanism</li>
+                        <ul class="list-inside">
+                            <li class="opacity-40 mb-4">So no need to keep record of your files checksums as same will be synced to your account (as ofc anonymous logins, more like password-less, maybe)</li>
+                        </ul>
+                    </ul>  
+                </div>
+
+			</section>
+		</div>
+
+		<!-- Join -->
+        <div class="container mt-12 md:mt-28 flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full lg:w-2/3">
+			<section class="w-full">
+				<h2 id="contact" class="secondary-title">Join</h2>
+				<p class="section-paragraph">us XD</p>
+
+                <div class="w-full grid lg:grid-cols-2 mt-12 md:mt-12">
+					<div class="space-y-12">
+						<div>
+							<img class="animated-gif" src="https://c.tenor.com/SD-5sdtUX8QAAAAC/simpsons-homer.gif">
+						</div>
+					</div>
+                </div>
+
+                <div class="mt-8 md:mt-2 ml-8">
+                    <p class="mt-4 opacity-40">having some issues,<br>or maybe some #FeatureRequest<br>or just wanna talk?<br></p>
+                    <div class="flex mt-4 space-x-6">
+                        <!-- Telegram -->
+                        <a class="text-[#00BFA6] underline" href="https://t.me/unlouder0" target="_blank">
+                            Join Telegram
+                        </a>
+                    </div>
+                </div>
+			</section>
+		</div>
+        
+{% endblock content %}
